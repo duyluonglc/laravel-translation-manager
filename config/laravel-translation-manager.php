@@ -206,12 +206,12 @@ return array(
      *                      they would be after publishing only to cache.
      */
     'db_connections' => array(
-        //'local' => array(
-        //    'mysql_prd' => array(
-        //        'description' => 'production',
-        //        'indatabase_publish' => 2,
-        //    ),
-        //),
+//        'local' => array(
+//            'sqlite' => array(
+//                'description' => 'sqlite',
+//                'indatabase_publish' => 2,
+//            ),
+//        ),
     ),
 
     /**
@@ -224,7 +224,7 @@ return array(
      *
      */
 
-    'default_connection' => null,
+    'default_connection' => 'sqlite',
 
     /**
      * used to provide the Yandex key for use in automatic Yandex translations

@@ -12,7 +12,7 @@ class AddGroupIndexToTranslations extends Migration
      */
     public function up()
     {
-        Schema::table('ltm_translations', function (Blueprint $table)
+        Schema::connection('sqlite')->table('ltm_translations', function (Blueprint $table)
         {
             $table->index(['group'], 'ix_ltm_translations_group');
         });
@@ -25,9 +25,9 @@ class AddGroupIndexToTranslations extends Migration
      */
     public function down()
     {
-        Schema::table('ltm_translations', function (Blueprint $table)
+        Schema::connection('sqlite')->table('ltm_translations', function (Blueprint $table)
         {
-            $table->dropIndex('ix_ltm_translations_group');
+            //$table->dropIndex('ix_ltm_translations_group');
         });
     }
 }

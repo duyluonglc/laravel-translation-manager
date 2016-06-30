@@ -1,5 +1,5 @@
 {
-    "name": "vsch/laravel-translation-manager",
+    "name": "luongnd/laravel-translation-manager-sqlite",
     "description": "Enhanced Laravel Translation Manager",
     "keywords": ["laravel", "translations", "translator"],
     "homepage": "https://github.com/vsch/laravel-translation-manager",

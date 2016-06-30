@@ -165,20 +165,6 @@ class Controller extends BaseController
     public
     function getIndex($group = null)
     {
-        try {
-            return $this->processIndex($group);
-        } catch (\Exception $e) {
-            // if have non default connection, reset it
-            if ($this->getConnectionName()) {
-                $this->setConnectionName('');
-            }
-        }
-        return $this->processIndex($group);
-    }
-
-    private
-    function processIndex($group = null)
-    {
         $locales = $this->locales;
         $currentLocale = \Lang::getLocale();
         $primaryLocale = $this->primaryLocale;
@@ -198,20 +184,20 @@ class Controller extends BaseController
         $displayWhere = $this->displayLocales ? ' AND locale IN (\'' . implode("','", explode(',', $this->displayLocales)) . "')" : '';
         $ltm_translations = $this->manager->getTranslationsTableName();
         $allTranslations = $this->getTranslation()->hydrateRaw($sql = <<<SQL
-SELECT  
-    ltm.id,
-    ltm.status,
-    ltm.locale,
-    ltm.`group`,
-    ltm.`key`,
-    ltm.value,
-    ltm.created_at,
-    ltm.updated_at,
-    ltm.saved_value,
-    ltm.is_deleted,
-    ltm.was_used,
+SELECT
+    ltm.id as id,
+    ltm.status as status,
+    ltm.locale as locale,
+    ltm.`group` as `group`,
+    ltm.`key` as `key`,
+    ltm.value as value,
+    ltm.created_at as created_at,
+    ltm.updated_at as updated_at,
+    ltm.saved_value as saved_value,
+    ltm.is_deleted as is_deleted,
+    ltm.was_used as was_used,
     ltm.source <> '' has_source,
-    ltm.is_auto_added
+    ltm.is_auto_added as is_auto_added
 FROM $ltm_translations ltm WHERE `group` = ? $displayWhere
 UNION ALL
 SELECT DISTINCT
@@ -241,7 +227,6 @@ SQL
         foreach ($allTranslations as $translation) {
             $translations[$translation->key][$translation->locale] = $translation;
         }
-
         $this->manager->cacheGroupTranslations($group, $this->displayLocales, $translations);
 
         $stats = $this->getConnection()->select(<<<SQL
@@ -419,7 +404,6 @@ SQL
                 }
             }
         }
-
         return \View::make($this->packagePrefix . 'index')
             ->with('controller', ManagerServiceProvider::CONTROLLER_PREFIX . get_class($this))
             ->with('package', $this->package)
@@ -947,8 +931,9 @@ SQL
                                     }
 
                                     $this->getConnection()->insert($sql = <<<SQL
-INSERT INTO $ltm_translations (status, locale, `group`, `key`, value, created_at, updated_at, source, saved_value, is_deleted, was_used) 
+INSERT INTO $ltm_translations
 SELECT
+    NULL id,
     1 status,
     locale,
     ? `group`,

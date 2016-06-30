@@ -11,10 +11,9 @@ class CreateUserLocalesTable extends Migration
      *
      * @return void
      */
-    public
-    function up()
+    public function up()
     {
-        Schema::create('ltm_user_locales', function (Blueprint $table) {
+        Schema::connection('sqlite')->create('ltm_user_locales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id', false, true);
             $table->text('locales')->nullable();
@@ -28,9 +27,9 @@ class CreateUserLocalesTable extends Migration
      *
      * @return void
      */
-    public
-    function down()
+    public function down()
     {
-        Schema::drop('ltm_user_locales');
+        Schema::connection('sqlite')->drop('ltm_user_locales');
     }
+
 }

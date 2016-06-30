@@ -713,7 +713,7 @@ SELECT * FROM $ltm_translations WHERE locale = ? AND `group` = ?
 SQL
             , [$locale, $db_group], $connectionName);
 
-        $timeStamp = 'now()';
+        $timeStamp = 'datetime()';
         $dbTransMap = [];
         $dbTranslations->each(function ($trans) use (&$dbTransMap, $connectionName) {
             $dbTransMap[$trans->key] = $trans;
@@ -824,11 +824,11 @@ SQL
         }
 
         if ($values) {
-            $sql = "INS" . "ERT INTO $ltm_translations (status, locale, `group`, `key`, value, created_at, updated_at, source, saved_value, is_deleted, was_used) VALUES " . implode(",", $values);
+            $sql = "INSERT INTO $ltm_translations (status, locale, `group`, `key`, value, created_at, updated_at, source, saved_value, is_deleted, was_used) VALUES " . implode(",", $values);
 
             //$this->getConnection()->unprepared('LOCK TABLES `ltm_translations` WRITE');
-            try {
                 $this->getConnection()->unprepared($sql);
+            try {
             } catch (\Exception $e) {
                 $tmp = 0;
             }
