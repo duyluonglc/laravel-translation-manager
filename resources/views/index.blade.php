@@ -13,7 +13,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <p>@lang($package . '::messages.export-warning-text') @lang($package.'::messages.powered-by-yandex')</p>
+                        <p>@lang($package . '::messages.export-warning-text')</p>
                         <div class="alert alert-danger alert-dismissible" style="display:none;">
                             <button type="button" class="close" data-hide="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -678,7 +678,6 @@
                                         <textarea id="primary-text" class="form-control" rows="3" name="keys"
                                                 style="resize: vertical;" placeholder="<?= $primaryLocale ?>"></textarea>
                                                 <div style="min-height: 10px"></div>
-                                        <span>@lang($package.'::messages.powered-by-yandex')</span>
                                         <span style="float:right; display:inline">
                                             <button id="translate-primary-current" type="button" class="btn btn-sm btn-primary">
                                                 <?= $primaryLocale ?>&nbsp;<i class="glyphicon glyphicon-share-alt"></i>&nbsp;<?= $translatingLocale ?>
@@ -692,7 +691,6 @@
                                                 <button id="translate-current-primary" type="button" class="btn btn-sm btn-primary">
                                                     <?= $translatingLocale ?>&nbsp;<i class="glyphicon glyphicon-share-alt"></i>&nbsp;<?= $primaryLocale ?>
                                                 </button>
-                                                <span style="float:right; display:inline">@lang($package.'::messages.powered-by-yandex')</span>
                                             </div>
                                         </div>
                                     </div>
@@ -864,8 +862,8 @@
     </script>
 
     <!-- Moved out to allow auto-format in PhpStorm w/o screwing up HTML format -->
-    <script src="<?=  $public_prefix . $package ?>/js/xregexp-all.js"></script>
-    <script src="<?=  $public_prefix . $package ?>/js/translations_page.js"></script>
+    <script src="{{ url($public_prefix . $package . '/js/xregexp-all.js') }}"></script>
+    <script src="{{ url($public_prefix . $package . '/js/translations_page.js') }}"></script>
 
     <?php
     $userLocaleList = [];

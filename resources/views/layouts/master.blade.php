@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
-    <link href="<?= $public_prefix ?>laravel-translation-manager/css/translations.css" rel="stylesheet">
+    <link href="{{ url($public_prefix . 'laravel-translation-manager/css/translations.css') }}" rel="stylesheet">
     @yield('head')
     {{--<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->--}}
     <!--[if lt IE 9]>
@@ -35,11 +35,11 @@
 {{--<!-- Placed at the end of the document so the pages load faster -->--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>--}}
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script> -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="<?= $public_prefix ?>laravel-translation-manager/js/rails.min.js"></script>
-<script src="<?= $public_prefix ?>laravel-translation-manager/js/inflection.js"></script>
-<script src="<?= $public_prefix ?>laravel-translation-manager/js/translations.js"></script>
+<script src="{{ url($public_prefix . 'laravel-translation-manager/js/rails.min.js') }}"></script>
+<script src="{{ url($public_prefix . 'laravel-translation-manager/js/inflection.js') }}"></script>
+<script src="{{ url($public_prefix . 'laravel-translation-manager/js/translations.js') }}"></script>
 @yield('body-bottom')
 </body>
 </html>
